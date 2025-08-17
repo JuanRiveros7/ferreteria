@@ -1,0 +1,43 @@
+/*Registro de Usuarios*/
+body {
+    background: linear-gradient(to right, #198754, #20c997);
+    font-family: Arial, sans-serif;
+}
+
+.login-box {
+    background-color: white;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.avatar {
+    border: 3px solid #198754;
+    padding: 4px;
+    background-color: #f8f9fa;
+}
+
+.btn-success {
+    background: linear-gradient(90deg, #198754, #20c997);
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #20c997, #198754);
+    transform: scale(1.05);
+}
+
+a {
+    color: #198754;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #20c997;
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 1; transform: translateY(0);}
+}

@@ -1,0 +1,76 @@
+<?php
+session_start();
+$nombre = $_SESSION['name_user'] ?? 'Usuario desconocido';
+$rol = $_SESSION['rol'] ?? '';
+
+if (isset($_POST['cerrar'])) {
+    session_destroy();
+    header("Location: ../../index.html");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header class="bg-primary text-white py-3 shadow">
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <img src="../../controller/image/avatar.png" alt="logo" class="me-3" style="width:60px; height:60px;">
+                <h4 class="mb-0">
+                    Bienvenido, <?php echo htmlspecialchars($nombre); ?>  
+                    <small class="text-light">| Rol: <?php echo htmlspecialchars($rol); ?></small>
+                </h4>
+            </div>
+            <form method="post" class="mt-3 mt-md-0">
+                <button type="submit" name="cerrar" class="btn btn-outline-light">
+                    <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                </button>
+            </form>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="container my-5">
+        <div class="row g-4">
+
+            <!-- Card Usuarios -->
+            <div class="col-md-6">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="bi bi-tools" style="font-size:3rem;"></i>
+                        <h5 class="card-title mt-3">Agregar Herramientas</h5>
+                        <a href="add_tool.php" class="btn btn-primary">
+                            <i class="bi bi-plus-circle-fill"></i> Agregar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Tipos de Usuarios -->
+            <div class="col-md-6">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="bi bi-pencil-square" style="font-size:3rem;"></i>
+                        <h5 class="card-title mt-3">Editar Herramientas</h5>
+                        <a href="edit_tool.php" class="btn btn-primary">
+                            <i class="bi bi-gear-wide"></i> Gestionar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
