@@ -63,7 +63,7 @@ if (isset($_POST['validar'])) {
             </div>
 
             <div class="text-center">
-                <a href="index.php" class="d-block text-decoration-none"><i class="bi bi-person-plus-fill me-1"></i> logearme?</a>
+                <a href="login.php" class="d-block text-decoration-none"><i class="bi bi-person-plus-fill me-1"></i> logearme?</a>
             </div>
         </form>
     </div>

@@ -10,7 +10,7 @@ if (isset($_POST['inicio'])) {
 
     if ($usuario === "" || $contrasena === "") {
         echo '<script>alert("Por favor ingrese usuario y contraseña");</script>';
-        echo '<script>window.location="../index.php"</script>';
+        echo '<script>window.location="../login.php"</script>';
         exit();
     }
 
@@ -46,7 +46,7 @@ if (isset($_POST['inicio'])) {
         exit();
     } else {
         echo '<script>alert("Usuario o contraseña incorrectos");</script>';
-        echo '<script>window.location="../index.php"</script>';
+        echo '<script>window.location="../login.php"</script>';
         exit();
     }
 }

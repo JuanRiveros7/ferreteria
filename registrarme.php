@@ -35,7 +35,7 @@ if (isset($_POST['registrar'])) {
     $insertSQL->execute([$doc, $nombre, $usuario, $correo, $pass_cifrado, $id_rol]);
 
     echo '<script>alert("Registro exitoso");</script>';
-    echo '<script>window.location="index.php"</script>';
+    echo '<script>window.location="login.php"</script>';
     exit();
 }
 ?>
@@ -107,7 +107,7 @@ if (isset($_POST['registrar'])) {
                         </div>
 
                         <div class="text-center">
-                            <a href="index.php" class="d-block text-decoration-none"><i class="bi bi-person-plus-fill me-1"></i> ¿Logearme?</a>
+                            <a href="login.php" class="d-block text-decoration-none"><i class="bi bi-person-plus-fill me-1"></i> ¿Logearme?</a>
                         </div>
                     </form>
                 </div>
