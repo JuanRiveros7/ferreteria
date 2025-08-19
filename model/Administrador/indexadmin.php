@@ -74,7 +74,7 @@ if (isset($_POST['cerrar'])) {
                     <div class="card-body">
                         <i class="bi bi-cart-fill" style="font-size:3rem;"></i>
                         <h5 class="card-title mt-3">Ventas</h5>
-                        <a href="ventas.php" class="btn btn-primary">
+                        <a href="../Administrador/sales.php" class="btn btn-primary">
                             <i class="bi bi-graph-up-arrow"></i> Gestionar
                         </a>
                     </div>
