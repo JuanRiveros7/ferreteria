@@ -30,7 +30,7 @@ if (isset($_POST['cerrar'])) {
                     <small class="text-light">| Rol: <?php echo htmlspecialchars($rol); ?></small>
                 </h4>
             </div>
-            <form method="post" class="mt-3 mt-md-0">
+            <form method="post" action="../../logout.php" class="mt-3 mt-md-0">
                 <button type="submit" name="cerrar" class="btn btn-outline-light">
                     <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
                 </button>
@@ -68,6 +68,57 @@ if (isset($_POST['cerrar'])) {
                 </div>
             </div>
 
+            <!-- Card Ventas -->
+            <div class="col-md-6">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="bi bi-cart-fill" style="font-size:3rem;"></i>
+                        <h5 class="card-title mt-3">Ventas</h5>
+                        <a href="ventas.php" class="btn btn-primary">
+                            <i class="bi bi-graph-up-arrow"></i> Gestionar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Detalle de Ventas -->
+            <div class="col-md-6">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="bi bi-file-earmark-text" style="font-size:3rem;"></i>
+                        <h5 class="card-title mt-3">Detalle de Ventas</h5>
+                        <a href="ventas.php" class="btn btn-primary">
+                            <i class="bi bi-receipt"></i> Gestionar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Usuarios -->
+            <div class="col-md-6">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="bi bi-people-fill"style="font-size:3rem;"></i>
+                        <h5 class="card-title mt-3">Usuarios</h5>
+                        <a href="reportes.php" class="btn btn-primary">
+                            <i class="bi bi-people"></i> Gestionar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Clientes -->
+            <div class="col-md-6">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="bi bi-person" style="font-size:3rem;"></i>
+                        <h5 class="card-title mt-3">Clientes</h5>
+                        <a href="reportes.php" class="btn btn-primary">
+                            <i class="bi bi-person-fill"></i> Gestionar
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 

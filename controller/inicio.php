@@ -33,14 +33,14 @@ if (isset($_POST['inicio'])) {
             case 1: // Administrador
                 header("Location: ../model/Administrador/indexadmin.php");
                 break;
-            case 2: // Cliente
-                header("Location: ../model/cliente.php");
+            case 2: // Empleado
+                header("Location: ../model/Vendedor/indexvendedor.php");
                 break;
-            case 3: // Empleado
-                header("Location: ../model/empleado.php");
+            case 3: // Usuario
+                header("location: ../index.php");
                 break;
             default:
-                header("Location: ../panel.php"); // Vista general o error
+                header("Location: ../index.php"); // Vista general o error
                 break;
         }
         exit();

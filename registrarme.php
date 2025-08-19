@@ -32,7 +32,7 @@ if (isset($_POST['registrar'])) {
 
     $insertSQL = $con->prepare("INSERT INTO usuarios(documento, nombre, usuario, email, contrasena, id_rol)
                                 VALUES (?, ?, ?, ?, ?, ?)");
-    $insertSQL->execute([$doc, $nombre, $usuario, $correo, $pass_cifrado, $id_rol]);
+    $insertSQL->execute([$doc, $name_user, $usuario, $correo, $pass_cifrado, $id_rol]);
 
     echo '<script>alert("Registro exitoso");</script>';
     echo '<script>window.location="login.php"</script>';
@@ -91,7 +91,7 @@ if (isset($_POST['registrar'])) {
                             <select name="id_rol" id="id_rol" class="form-select rounded-pill">
                                 <option value="">Seleccione Rol</option>
                                 <?php
-                                $control = $con->prepare("SELECT * FROM roles");
+                                $control = $con->prepare("SELECT * FROM roles WHERE id_rol = 3");
                                 $control->execute();
                                 while ($tp = $control->fetch(PDO::FETCH_ASSOC)) {
                                     echo '<option value="' . $tp['id_rol'] . '">' . $tp['nombre_rol'] . '</option>';

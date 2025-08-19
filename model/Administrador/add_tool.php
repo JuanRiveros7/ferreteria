@@ -4,12 +4,12 @@ require_once("../../database/conexion.php");
 $db = new Database;
 $con = $db->conectar();
 
-// Esta consulta obtiene categorías para el select
+//obtiene categorías para el select
 $sql = $con->prepare("SELECT * FROM categorias");
 $sql->execute();
 $categorias = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-// Este parte guarda el producto y categoría si es necesario
+// guarda el producto y categoría si es necesario
 if (isset($_POST['guardar'])) {
     $nombre_producto = trim($_POST['nombre_producto']);
     $descripcion = trim($_POST['descripcion']);
@@ -18,13 +18,13 @@ if (isset($_POST['guardar'])) {
     $categoria_existente = $_POST['id_categoria'];
     $nueva_categoria = trim($_POST['nueva_categoria']);
 
-    //Esta determina la categoría por el id_categoria
+    //determina la categoría por el id_categoria
     if (!empty($nueva_categoria)) {
         $sqlCheck = $con->prepare("SELECT id_categoria FROM categorias WHERE nombre = ?");
         $sqlCheck->execute([$nueva_categoria]);
         $cat = $sqlCheck->fetch(PDO::FETCH_ASSOC);
 
-        // Esta consulta verifica si ya existe la categoria
+        //verifica si ya existe la categoria
         $check = $con->prepare("SELECT id_categoria FROM categorias WHERE nombre_categoria = ?");
         $check->execute([$nueva_categoria]);
         $cat = $check->fetch();
@@ -32,7 +32,7 @@ if (isset($_POST['guardar'])) {
         if ($cat) {
             $id_categoria = $cat['id_categoria'];
         } else {
-            // Esta consulta inserta nueva categoría
+            //inserta nueva categoría
             $insert_cat = $con->prepare("INSERT INTO categorias (nombre_categoria) VALUES (?)");
             $insert_cat->execute([$nueva_categoria]);
             $id_categoria = $con->lastInsertId();
@@ -46,7 +46,7 @@ if (isset($_POST['guardar'])) {
         exit;
     }
 
-    // Esta consulta inserta producto
+    //inserta producto
     $insert_prod = $con->prepare("INSERT INTO productos (nombre_producto, descripcion, precio, stock, id_categoria) VALUES (?, ?, ?, ?, ?)");
     $insert_prod->execute([$nombre_producto, $descripcion, $precio, $stock, $id_categoria]);
 
