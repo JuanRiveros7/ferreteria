@@ -87,7 +87,7 @@ if (isset($_POST['cerrar'])) {
                     <div class="card-body">
                         <i class="bi bi-file-earmark-text" style="font-size:3rem;"></i>
                         <h5 class="card-title mt-3">Detalle de Ventas</h5>
-                        <a href="ventas.php" class="btn btn-primary">
+                        <a href="../Administrador/detail_sales.php" class="btn btn-primary">
                             <i class="bi bi-receipt"></i> Gestionar
                         </a>
                     </div>
