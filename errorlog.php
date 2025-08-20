@@ -1,7 +1,7 @@
 <?php
-    session_start();
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,10 +18,8 @@
         <img src="controller/image/logo.png" class="avatar" alt="Avatar Image">
         <h1>ERROR INICIO SESION</h1>
         <form method="post" name="form1" id="form1" action="controller/inicio.php" autocomplete="off">
-            <!-- USERNAME INPUT -->
             <label for="username">Usuario</label>
             <input type="text" name="usuario" id="usuario" placeholder="Ingrese Usuario">
-            <!-- PASSWORD INPUT -->
             <label for="password">Contraseña</label>
             <input type="password" name="contrasena" id="password" placeholder="Ingrese Contraseña">
             <input type="submit" name="inicio" id="inicio" value="Ingresar">
@@ -30,4 +28,5 @@
         </form>
     </div>
 </body>
+
 </html>

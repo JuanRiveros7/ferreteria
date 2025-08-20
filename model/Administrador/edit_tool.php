@@ -24,6 +24,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +38,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="d-flex align-items-center">
                 <img src="../../controller/image/avatar.png" alt="logo" class="me-3" style="width:60px; height:60px;">
                 <h4 class="mb-0">
-                    Bienvenido  
+                    Bienvenido
                 </h4>
             </div>
             <a href="indexadmin.php" class="btn btn-outline-light text-decoration-none text-white">
@@ -49,39 +50,40 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body class="bg-light">
 
-<div class="container mt-4">
-    <h2 class="mb-4 text-dark">Gestión de Herramientas</h2>
-    
-    <table class="table table-bordered table-hover table-striped align-middle">
-        <thead class="table-dark text-center">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Categoría</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody class="text-center">
-            <?php foreach ($productos as $producto): ?>
+    <div class="container mt-4">
+        <h2 class="mb-4 text-dark">Gestión de Herramientas</h2>
+
+        <table class="table table-bordered table-hover table-striped align-middle">
+            <thead class="table-dark text-center">
                 <tr>
-                    <td><?= $producto['id_producto'] ?></td>
-                    <td><?= $producto['nombre_producto'] ?></td>
-                    <td><?= $producto['descripcion'] ?></td>
-                    <td>$<?= number_format($producto['precio'], 2) ?></td>
-                    <td><?= $producto['stock'] ?></td>
-                    <td><?= $producto['nombre_categoria'] ?></td>
-                    <td>
-                        <a href="update_tool.php?id=<?= $producto['id_producto'] ?>" class="btn btn-warning btn-sm">Editar</a>
-                        <a href="delete_tool.php?id=<?= $producto['id_producto'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">Eliminar</a>
-                    </td>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Categoría</th>
+                    <th>Acciones</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody class="text-center">
+                <?php foreach ($productos as $producto): ?>
+                    <tr>
+                        <td><?= $producto['id_producto'] ?></td>
+                        <td><?= $producto['nombre_producto'] ?></td>
+                        <td><?= $producto['descripcion'] ?></td>
+                        <td>$<?= number_format($producto['precio'], 2) ?></td>
+                        <td><?= $producto['stock'] ?></td>
+                        <td><?= $producto['nombre_categoria'] ?></td>
+                        <td>
+                            <a href="update_tool.php?id=<?= $producto['id_producto'] ?>" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="delete_tool.php?id=<?= $producto['id_producto'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">Eliminar</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 
 </body>
+
 </html>

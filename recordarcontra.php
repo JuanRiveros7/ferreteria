@@ -29,6 +29,7 @@ if (isset($_POST['validar'])) {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <title>Formulario Recuperar Contraseña | CAEC</title>
@@ -67,9 +68,7 @@ if (isset($_POST['validar'])) {
             </div>
         </form>
     </div>
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
+
 </html>

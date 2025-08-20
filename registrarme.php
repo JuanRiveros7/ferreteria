@@ -28,7 +28,7 @@ if (isset($_POST['registrar'])) {
         exit();
     }
 
-    $pass_cifrado = password_hash($contrasena, PASSWORD_DEFAULT,array("pass"=>12));
+    $pass_cifrado = password_hash($contrasena, PASSWORD_DEFAULT, array("pass" => 12));
 
     $insertSQL = $con->prepare("INSERT INTO usuarios(documento, nombre, usuario, email, contrasena, id_rol)
                                 VALUES (?, ?, ?, ?, ?, ?)");
@@ -41,6 +41,7 @@ if (isset($_POST['registrar'])) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <title>Registro de Usuario | CAEC</title>
@@ -116,4 +117,5 @@ if (isset($_POST['registrar'])) {
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

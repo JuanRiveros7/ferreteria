@@ -1,14 +1,10 @@
-<?php 
+<?php
 session_start();
-
-// Incluir la clase Database
 require_once "../../database/conexion.php";
-
-// Crear instancia y obtener conexión
 $db = new Database();
-$pdo = $db->conectar(); 
+$pdo = $db->conectar();
 
-// Consultar ventas con PDO
+// Consultar las ventas
 $sql = "SELECT v.id_venta, v.fecha_venta, v.total, u.nombre AS usuario 
         FROM ventas v
         INNER JOIN usuarios u ON v.documento = u.documento
@@ -18,6 +14,7 @@ $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,43 +40,44 @@ $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body class="bg-light">
 
-<div class="container mt-4">
-    <h2 class="mb-4 text-dark">Historial de Ventas</h2>
+    <div class="container mt-4">
+        <h2 class="mb-4 text-dark">Historial de Ventas</h2>
 
-    <table class="table table-bordered table-hover table-striped align-middle">
-        <thead class="table-dark text-center">
-            <tr>
-                <th>ID Venta</th>
-                <th>Fecha</th>
-                <th>Total</th>
-                <th>Usuario</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody class="text-center">
-            <?php if (!empty($ventas)): ?>
-                <?php foreach ($ventas as $row): ?>
-                    <tr>
-                        <td><?= $row['id_venta'] ?></td>
-                        <td><?= $row['fecha_venta'] ?></td>
-                        <td>$<?= number_format($row['total'], 0, ',', '.') ?></td>
-                        <td><?= $row['usuario'] ?></td>
-                        <td>
-                            <a href="detail_sales.php?id=<?= $row['id_venta'] ?>" 
-                               class="btn btn-sm btn-info">
-                                <i class="bi bi-eye"></i> Ver Detalle
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
+        <table class="table table-bordered table-hover table-striped align-middle">
+            <thead class="table-dark text-center">
                 <tr>
-                    <td colspan="5" class="text-center text-muted">No hay ventas registradas</td>
+                    <th>ID Venta</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Usuario</th>
+                    <th>Acciones</th>
                 </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody class="text-center">
+                <?php if (!empty($ventas)): ?>
+                    <?php foreach ($ventas as $row): ?>
+                        <tr>
+                            <td><?= $row['id_venta'] ?></td>
+                            <td><?= $row['fecha_venta'] ?></td>
+                            <td>$<?= number_format($row['total'], 0, ',', '.') ?></td>
+                            <td><?= $row['usuario'] ?></td>
+                            <td>
+                                <a href="detail_sales.php?id=<?= $row['id_venta'] ?>"
+                                    class="btn btn-sm btn-info">
+                                    <i class="bi bi-eye"></i> Ver Detalle
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No hay ventas registradas</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 
 </body>
+
 </html>

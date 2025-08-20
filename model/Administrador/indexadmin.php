@@ -11,6 +11,7 @@ if (isset($_POST['cerrar'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@ if (isset($_POST['cerrar'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 
     <!-- Encabezado -->
@@ -26,7 +28,7 @@ if (isset($_POST['cerrar'])) {
             <div class="d-flex align-items-center">
                 <img src="../../controller/image/avatar.png" alt="logo" class="me-3" style="width:60px; height:60px;">
                 <h4 class="mb-0">
-                    Bienvenido, <?php echo htmlspecialchars($nombre); ?>  
+                    Bienvenido, <?php echo htmlspecialchars($nombre); ?>
                     <small class="text-light">| Rol: <?php echo htmlspecialchars($rol); ?></small>
                 </h4>
             </div>
@@ -98,9 +100,9 @@ if (isset($_POST['cerrar'])) {
             <div class="col-md-6">
                 <div class="card text-center shadow-sm">
                     <div class="card-body">
-                        <i class="bi bi-people-fill"style="font-size:3rem;"></i>
+                        <i class="bi bi-people-fill" style="font-size:3rem;"></i>
                         <h5 class="card-title mt-3">Usuarios</h5>
-                        <a href="reportes.php" class="btn btn-primary">
+                        <a href="../Administrador/usuarios.php" class="btn btn-primary">
                             <i class="bi bi-people"></i> Gestionar
                         </a>
                     </div>
@@ -124,4 +126,5 @@ if (isset($_POST['cerrar'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

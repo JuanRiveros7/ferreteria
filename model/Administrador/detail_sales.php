@@ -1,5 +1,5 @@
 <?php
-require_once("../../database/conexion.php"); 
+require_once("../../database/conexion.php");
 
 if (!isset($_GET['id'])) {
     die("Error: No se especificó una venta.");
@@ -34,18 +34,16 @@ $venta = $stmtVenta->fetch(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Detalle de Venta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Bootstrap y Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body class="bg-light">
 
-    <!-- HEADER -->
+<body class="bg-light">
     <header class="bg-primary text-white py-3 shadow">
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
             <div class="d-flex align-items-center">
@@ -57,8 +55,6 @@ $venta = $stmtVenta->fetch(PDO::FETCH_ASSOC);
             </a>
         </div>
     </header>
-
-    <!-- CONTENIDO -->
     <div class="container mt-4">
         <div class="card shadow-lg">
             <div class="card-body">
@@ -66,8 +62,6 @@ $venta = $stmtVenta->fetch(PDO::FETCH_ASSOC);
                 <p class="mb-1"><strong>Cliente:</strong> <?php echo $venta['cliente']; ?></p>
                 <p class="mb-1"><strong>Fecha:</strong> <?php echo $venta['fecha_venta']; ?></p>
                 <p class="mb-3"><strong>Total:</strong> <span class="text-success fw-bold">$<?php echo number_format($venta['total'], 2); ?></span></p>
-
-                <!-- Tabla de detalles -->
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped align-middle">
                         <thead class="table-dark text-center">
@@ -107,4 +101,5 @@ $venta = $stmtVenta->fetch(PDO::FETCH_ASSOC);
     </div>
 
 </body>
+
 </html>
