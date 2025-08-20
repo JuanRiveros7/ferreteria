@@ -22,7 +22,6 @@ $sql = $con->query("SELECT p.*, c.nombre_categoria
 
 <body>
   <?php include "navbar.php"; ?>
-
   <div class="container mt-4">
     <div class="row">
       <?php while ($row = $sql->fetch(PDO::FETCH_ASSOC)): ?>

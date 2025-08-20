@@ -21,12 +21,10 @@ if (isset($_POST['cerrar'])) {
 </head>
 
 <body>
-
-    <!-- Encabezado -->
     <header class="bg-primary text-white py-3 shadow">
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img src="../../controller/image/avatar.png" alt="logo" class="me-3" style="width:60px; height:60px;">
+                <img src="../../img/Logo_ferreteria.png" alt="logo" class="me-3" style="width:60px; height:60px;">
                 <h4 class="mb-0">
                     Bienvenido, <?php echo htmlspecialchars($nombre); ?>
                     <small class="text-light">| Rol: <?php echo htmlspecialchars($rol); ?></small>
@@ -39,8 +37,6 @@ if (isset($_POST['cerrar'])) {
             </form>
         </div>
     </header>
-
-    <!-- Contenido principal -->
     <main class="container my-5">
         <div class="row g-4">
 

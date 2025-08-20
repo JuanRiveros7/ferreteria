@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
+    <img src="img/Logo_ferreteria.png" alt="logo" class="me-3" style="width:60px; height:60px;">
     <a class="navbar-brand fw-bold" href="index.php">Ferretería Online</a>
 
     <form class="d-flex ms-auto" action="buscar.php" method="GET">
