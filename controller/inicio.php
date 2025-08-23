@@ -25,7 +25,7 @@ if (isset($_POST['inicio'])) {
     if ($fila && password_verify($contrasena, $fila['contrasena'])) {
         $_SESSION['usuario'] = $fila['usuario'];
         $_SESSION['name_user'] = $fila['nombre'];
-        $_SESSION['rol'] = $fila['id_rol'];
+        $_SESSION['id_rol'] = $fila['id_rol'];
         $_SESSION['rol'] = $fila['nombre_rol'];
 
 
@@ -33,14 +33,14 @@ if (isset($_POST['inicio'])) {
             case 1: // Administrador
                 header("Location: ../model/Administrador/indexadmin.php");
                 break;
-            case 2: // Empleado
+            case 2: // Vendedor
                 header("Location: ../model/Vendedor/indexvendedor.php");
                 break;
-            case 3: // Usuario
-                header("location: ../index.php");
+            case 3: // Cliente
+                header("location: ../model/Cliente/indexcliente.php");
                 break;
             default:
-                header("Location: ../index.php"); // Vista general o error
+                header("Location: ../index.php");
                 break;
         }
         exit();

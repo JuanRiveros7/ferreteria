@@ -5,7 +5,7 @@ $rol = $_SESSION['rol'] ?? '';
 
 if (isset($_POST['cerrar'])) {
     session_destroy();
-    header("Location: ../../index.html");
+    header("Location: ../../index.php");
     exit();
 }
 ?>
@@ -52,6 +52,22 @@ if (isset($_POST['cerrar'])) {
                     </div>
                 </div>
             </div>
+
+            <!-- Card ir al index.php -->
+            <div class="col-md-6">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="bi bi-tags-fill" style="font-size:3rem;"></i>
+                        <h5 class="card-title mt-3">Ir a la interfaz</h5>
+                        <a href="#" class="btn btn-primary"
+                            onclick="window.open('../../index.php', '', 'width=2000%,height=1000%,toolbar=NO'); return false;">
+                            <i class="bi bi-pencil-square"></i> Abrir
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
 
             <!-- Card Tipos de Usuarios -->
             <div class="col-md-6">

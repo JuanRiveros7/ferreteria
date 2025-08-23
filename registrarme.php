@@ -92,7 +92,7 @@ if (isset($_POST['registrar'])) {
                             <select name="id_rol" id="id_rol" class="form-select rounded-pill">
                                 <option value="">Seleccione Rol</option>
                                 <?php
-                                $control = $con->prepare("SELECT * FROM roles WHERE id_rol = 3");
+                                $control = $con->prepare("SELECT * FROM roles WHERE id_rol = 2");
                                 $control->execute();
                                 while ($tp = $control->fetch(PDO::FETCH_ASSOC)) {
                                     echo '<option value="' . $tp['id_rol'] . '">' . $tp['nombre_rol'] . '</option>';
