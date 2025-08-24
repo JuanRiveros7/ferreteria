@@ -39,6 +39,23 @@ foreach ($detalles as $d) {
 </head>
 
 <body class="bg-light">
+
+    <div>
+        <header class="bg-primary text-white py-3 shadow">
+            <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <img src="../../img/Logo_ferreteria.png" alt="logo" class="me-3" style="width:60px; height:60px;">
+                    <h4 class="mb-0">
+                        Bienvenido
+                    </h4>
+                </div>
+                <a href="indexadmin.php" class="btn btn-outline-light text-decoration-none text-white">
+                    <i class="bi bi-box-arrow-right"></i> Regresar
+                </a>
+            </div>
+        </header>
+    </div>
+
     <div class="container mt-4">
         <h2 class="mb-4">Historial de Ventas</h2>
         <table class="table table-bordered table-hover">
@@ -49,6 +66,7 @@ foreach ($detalles as $d) {
                     <th>Cliente</th>
                     <th>Total</th>
                     <th>Detalles</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -71,6 +89,12 @@ foreach ($detalles as $d) {
                                     <li><em>Sin productos</em></li>
                                 <?php endif; ?>
                             </ul>
+                        </td>
+                        <td>
+                            <a href="vercliente.php?doc=<?= $venta['doc_cliente'] ?>"
+                                class="btn btn-info btn-sm">
+                                Ver Cliente
+                            </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

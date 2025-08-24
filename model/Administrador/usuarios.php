@@ -66,11 +66,10 @@ $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 <body class="bg-light">
 
-    <!-- Encabezado -->
     <header class="bg-primary text-white py-3 shadow">
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img src="../../controller/image/avatar.png" alt="logo" class="me-3" style="width:60px; height:60px;">
+                <img src="../../img/Logo_ferreteria.png" alt="logo" class="me-3" style="width:60px; height:60px;">
                 <h4 class="mb-0">Gestión de Usuarios</h4>
             </div>
             <a href="indexadmin.php" class="btn btn-outline-light text-decoration-none text-white">
@@ -127,7 +126,6 @@ $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div class="text-end mt-3">
                         <button type="submit" name="crear" class="btn btn-success">Añadir Usuario</button>
-                        <a href="indexadmin.php" class="btn btn-secondary">Regresar</a>
                     </div>
                 </form>
             </div>

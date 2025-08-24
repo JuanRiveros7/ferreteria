@@ -68,7 +68,7 @@ if (isset($_POST['cerrar'])) {
             <div class="col-md-6">
                 <div class="card text-center shadow-sm">
                     <div class="card-body">
-                        <i class="bi bi-tags-fill" style="font-size:3rem;"></i>
+                        <i class="bi bi-laptop" style="font-size:3rem;"></i>
                         <h5 class="card-title mt-3">Ir a la interfaz</h5>
                         <a href="#" class="btn btn-primary"
                             onclick="window.open('../../index.php', '', 'width=2000%,height=1000%,toolbar=NO'); return false;">
@@ -88,6 +88,19 @@ if (isset($_POST['cerrar'])) {
                         <h5 class="card-title mt-3">Editar Herramientas</h5>
                         <a href="edit_tool.php" class="btn btn-primary">
                             <i class="bi bi-gear-wide"></i> Gestionar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Card Tipos de Usuarios -->
+            <div class="col-md-6">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="bi bi-person-bounding-box" style="font-size:3rem;"></i>
+                        <h5 class="card-title mt-3">Datos cliente</h5>
+                        <a href="vercliente.php" class="btn btn-primary">
+                            <i class="bi bi-person-badge-fill"></i>Mirar Datos Cliente
                         </a>
                     </div>
                 </div>
