@@ -1,5 +1,10 @@
 <?php
 session_start();
+// Si ya está logueado, redirigir al panel
+if (isset($_SESSION['usuario'])) {
+    header("Location: inicioadmin.php");
+    exit;
+}
 require_once("database/conexion.php");
 $db = new Database;
 $con = $db->conectar();

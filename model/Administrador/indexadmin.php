@@ -1,5 +1,16 @@
 <?php
 session_start();
+// Bloquear cache del navegador
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+// Verificar sesión
+if (!isset($_SESSION['usuario'])) {
+    header("Location: login.php");
+    exit;
+}
+
 $nombre = $_SESSION['name_user'] ?? 'Usuario desconocido';
 $rol = $_SESSION['rol'] ?? '';
 
@@ -82,32 +93,6 @@ if (isset($_POST['cerrar'])) {
                 </div>
             </div>
 
-            <!-- Card Ventas -->
-            <div class="col-md-6">
-                <div class="card text-center shadow-sm">
-                    <div class="card-body">
-                        <i class="bi bi-cart-fill" style="font-size:3rem;"></i>
-                        <h5 class="card-title mt-3">Ventas</h5>
-                        <a href="../Administrador/sales.php" class="btn btn-primary">
-                            <i class="bi bi-graph-up-arrow"></i> Gestionar
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card Detalle de Ventas -->
-            <div class="col-md-6">
-                <div class="card text-center shadow-sm">
-                    <div class="card-body">
-                        <i class="bi bi-file-earmark-text" style="font-size:3rem;"></i>
-                        <h5 class="card-title mt-3">Detalle de Ventas</h5>
-                        <a href="../Administrador/detail_sales.php" class="btn btn-primary">
-                            <i class="bi bi-receipt"></i> Gestionar
-                        </a>
-                    </div>
-                </div>
-            </div>
-
             <!-- Card Usuarios -->
             <div class="col-md-6">
                 <div class="card text-center shadow-sm">
@@ -127,7 +112,7 @@ if (isset($_POST['cerrar'])) {
                     <div class="card-body">
                         <i class="bi bi-file-earmark-text" style="font-size:3rem;"></i>
                         <h5 class="card-title mt-3">Reportes de ventas</h5>
-                        <a href="../../ventas.php" class="btn btn-primary">
+                        <a href="../Administrador/ventas.php" class="btn btn-primary">
                             <i class="bi bi-file-earmark-text"></i> Gestionar
                         </a>
                     </div>
