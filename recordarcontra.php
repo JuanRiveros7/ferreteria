@@ -5,21 +5,41 @@ $db = new Database;
 $con = $db->conectar();
 
 if (isset($_POST['validar'])) {
-
     $usuario = $_POST["usuario"];
     $doc = $_POST["documento"];
 
     if (empty($usuario) || empty($doc)) {
-        echo '<script>alert ("Llena los campos");</script>';
+        echo '<script>alert("Llena los campos");</script>';
     } else {
-        $sql = $con->prepare("SELECT * FROM user WHERE user = ? AND documento = ?");
+        $sql = $con->prepare("SELECT * FROM usuarios WHERE usuario = ? AND documento = ?");
         $sql->execute([$usuario, $doc]);
-        $fila = $sql->fetchAll(mode: PDO::FETCH_ASSOC);
+        $fila = $sql->fetch(PDO::FETCH_ASSOC);
 
         if ($fila) {
-            $_SESSION['documento'] = $documento;
-            header("location:nueva_contraseña.php");
-            exit();
+            $token = bin2hex(random_bytes(16)); // Token aleatorio seguro
+            $expira = date("Y-m-d H:i:s", strtotime("+1 hour")); // expira en 1 hora
+
+            // Guardar token en la BD
+            $update = $con->prepare("UPDATE usuarios SET token_recuperacion=?, token_expira=? WHERE documento=?");
+            $update->execute([$token, $expira, $fila['documento']]);
+
+            // Enviar correo con link
+            $to = $fila['email'];
+            $subject = "Recuperar contraseña";
+            $headers = "From: no-reply@tusitio.com\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+            $link = "http://localhost/ferreteria/nuevacontrasena.php?token=$token";
+            $message = "<p>Hola <b>{$fila['usuario']}</b>,</p>";
+            $message .= "<p>Haz clic en el siguiente enlace para restablecer tu contraseña:</p>";
+            $message .= "<p><a href='$link'>$link</a></p>";
+            $message .= "<p>Este enlace expira en 1 hora.</p>";
+
+            if (mail($to, $subject, $message, $headers)) {
+                echo "<script>alert('Se ha enviado un correo con instrucciones para recuperar la contraseña');</script>";
+            } else {
+                echo "<script>alert('Error al enviar el correo');</script>";
+            }
         } else {
             echo '<script>alert ("Usuario o Documento Incorrecto");</script>';
         }

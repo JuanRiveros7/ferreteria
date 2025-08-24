@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-08-2025 a las 23:26:23
+-- Tiempo de generación: 24-08-2025 a las 23:50:35
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -47,6 +47,21 @@ INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`) VALUES
 (8, 'Ferretería general'),
 (9, 'Maquinaria y equipos'),
 (10, 'Jardinería y exteriores');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `documento` int(11) NOT NULL,
+  `nombre_completo` varchar(100) NOT NULL,
+  `telefono` varchar(15) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `direccion` varchar(150) DEFAULT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -146,8 +161,7 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id_rol`, `nombre_rol`) VALUES
 (1, 'Administrador'),
-(2, 'Vendedor'),
-(3, 'Cliente');
+(2, 'Vendedor');
 
 -- --------------------------------------------------------
 
@@ -161,16 +175,18 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `usuario` varchar(50) NOT NULL,
   `contrasena` varchar(255) NOT NULL,
-  `id_rol` int(11) NOT NULL
+  `id_rol` int(11) NOT NULL,
+  `token_recuperacion` varchar(255) DEFAULT NULL,
+  `token_expira` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`documento`, `nombre`, `email`, `usuario`, `contrasena`, `id_rol`) VALUES
-(1103466687, 'Miguel Angel', 'Miguel@gmail.com', 'Miguel', '$2y$10$2561HF9Gv2UHS.d6sSl4u.yBoeSreT0/7JcUVOHwMMlhKfwMS3m8y', 3),
-(1107977792, 'Juan Esteban Riveros Nuñez', 'juanestebank7@gmail.com', 'Mono', '$2y$10$LDr187Zf0maus.qfB.Z8j.At7uYxQ/3kjePLjkqKLZ8ZMT/EF1Ch.', 1);
+INSERT INTO `usuarios` (`documento`, `nombre`, `email`, `usuario`, `contrasena`, `id_rol`, `token_recuperacion`, `token_expira`) VALUES
+(1107977792, 'Juan Esteban Riveros Nuñez', 'juanestebank7@gmail.com', 'Mono', '$2y$10$j.dsgL.lP1qAkZ8z0ZXTjOLCKcbr6avgtwIuhm/6AyCGmvH5Q4/Lq', 1, NULL, NULL),
+(1544648465, 'Jose Reina', 'jose@gmail.com', 'Alejandro7', '$2y$10$iAJjRZnNoYFs2wtXlM8HEOKs49WER2WubEOUF8Py6pijG0rc0RIge', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,9 +196,9 @@ INSERT INTO `usuarios` (`documento`, `nombre`, `email`, `usuario`, `contrasena`,
 
 CREATE TABLE `ventas` (
   `id_venta` int(11) NOT NULL,
-  `documento` int(12) NOT NULL,
   `fecha_venta` timestamp NOT NULL DEFAULT current_timestamp(),
-  `total` decimal(10,2) NOT NULL
+  `total` decimal(10,2) NOT NULL,
+  `documento_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -194,6 +210,12 @@ CREATE TABLE `ventas` (
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`documento`);
 
 --
 -- Indices de la tabla `detalle_venta`
@@ -229,7 +251,7 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `ventas`
   ADD PRIMARY KEY (`id_venta`),
-  ADD KEY `documento` (`documento`);
+  ADD KEY `fk_cliente_venta` (`documento_cliente`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -245,7 +267,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -263,13 +285,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `documento` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1154788896;
+  MODIFY `documento` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1544648466;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -298,7 +320,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  ADD CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`documento`) REFERENCES `usuarios` (`documento`);
+  ADD CONSTRAINT `fk_cliente_venta` FOREIGN KEY (`documento_cliente`) REFERENCES `clientes` (`documento`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

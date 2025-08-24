@@ -1,67 +1,61 @@
 <?php
 session_start();
-require_once("database/connection.php");
+require_once("database/conexion.php");
 $db = new Database;
 $con = $db->conectar();
 
+if (isset($_GET['token'])) {
+    $token = $_GET['token'];
 
-if (!isset($_SESSION['doc'])) {
-    echo '<script>alert("Acceso no autorizado.");</script>';
-    echo '<script>window.location="recordarcontra.php";</script>';
-    exit();
+    // Verificar token
+    $sql = $con->prepare("SELECT * FROM usuarios WHERE token_recuperacion=? AND token_expira > NOW()");
+    $sql->execute([$token]);
+    $user = $sql->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        die("Token inválido o expirado.");
+    }
+} else {
+    die("Falta el token.");
 }
 
-$doc = $_SESSION['doc'];
+// Procesar nueva contraseña
+if (isset($_POST['cambiar'])) {
+    $nueva = $_POST['contrasena'] ?? '';
 
-
-if (isset($_POST['validar'])) {
-    $contrasena = $_POST["password1"];
-    $confirmar_contrasena = $_POST["password2"];
-
-
-    if (empty($contrasena) || empty($confirmar_contrasena)) {
-        echo '<script>alert ("llena Los Campos");</script>';
-    } elseif ($contrasena !== $confirmar_contrasena) {
-        echo '<script>alert ("Las contraseñas no coinciden");</script>';
-        echo '<script>window.location="nueva_contraseña.php";</script>';
-        exit();
+    if ($nueva === "") {
+        echo "<script>alert('Ingrese la nueva contraseña');</script>";
     } else {
-        $pass_cifrado = password_hash($contrasena, PASSWORD_DEFAULT);
+        $pass_cifrado = password_hash($nueva, PASSWORD_DEFAULT);
 
-        $sql = $con->prepare("UPDATE usuarios SET contrasena = ? WHERE documento = ?");
-        $sql->execute([$pass_cifrado, $doc]);
+        $update = $con->prepare("UPDATE usuarios SET contrasena=?, token_recuperacion=NULL, token_expira=NULL WHERE documento=?");
+        $update->execute([$pass_cifrado, $user['documento']]);
 
-        unset($_SESSION['doc']);
-        echo '<script>alert("Contraseña actualizada con éxito.");</script>';
-        echo '<script>window.location="index.html";</script>';
+        echo "<script>alert('Contraseña actualizada correctamente'); window.location='login.php';</script>";
+        exit();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>Formulario Inicio Sesion | CAEC</title>
-    <link rel="stylesheet" href="controller/css/style.css">
+  <meta charset="utf-8">
+  <title>Nueva Contraseña</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
-<body onload="form1.usuario.focus()" class="instructor">
-    <div class="login-box">
-        <img src="controller/image/logo.png" class="avatar" alt="Avatar Image">
-        <h1>RECUPERAR CONTRASEÑA</h1>
-        <form method="POST" name="select" id="select" autocomplete="off">
-            <label for="usuario">NUEVA CONTRASEÑA</label>
-            <input type="password" name="password1" id="password" placeholder="Digite Tu Nueva Contraseña">
-
-            <label for="usuario">CONFIRMAR CONTRASEÑA</label>
-            <input type="password" name="password2" id="password" placeholder="Digite Tu Nueva Contraseña">
-
-            <input type="submit" name="validar" value="Validar">
-        </form>
-    </div>
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
+  <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width:400px;width:100%;">
+    <h1 class="h5 fw-bold text-primary mb-3">Restablecer Contraseña</h1>
+    <form method="POST">
+      <div class="mb-3">
+        <label for="contrasena" class="form-label">Nueva Contraseña</label>
+        <input type="password" name="contrasena" id="contrasena" class="form-control rounded-pill" placeholder="Ingrese nueva contraseña">
+      </div>
+      <div class="d-grid">
+        <button type="submit" name="cambiar" class="btn btn-primary rounded-pill">Cambiar Contraseña</button>
+      </div>
+    </form>
+  </div>
 </body>
-
 </html>

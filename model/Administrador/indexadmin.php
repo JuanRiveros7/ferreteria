@@ -121,14 +121,14 @@ if (isset($_POST['cerrar'])) {
                 </div>
             </div>
 
-            <!-- Card Clientes -->
+            <!-- Card Reportes -->
             <div class="col-md-6">
                 <div class="card text-center shadow-sm">
                     <div class="card-body">
-                        <i class="bi bi-person" style="font-size:3rem;"></i>
-                        <h5 class="card-title mt-3">Clientes</h5>
-                        <a href="reportes.php" class="btn btn-primary">
-                            <i class="bi bi-person-fill"></i> Gestionar
+                        <i class="bi bi-file-earmark-text" style="font-size:3rem;"></i>
+                        <h5 class="card-title mt-3">Reportes de ventas</h5>
+                        <a href="../../ventas.php" class="btn btn-primary">
+                            <i class="bi bi-file-earmark-text"></i> Gestionar
                         </a>
                     </div>
                 </div>

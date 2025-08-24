@@ -35,7 +35,8 @@ $categorias = $con->query("SELECT * FROM categorias")->fetchAll(PDO::FETCH_ASSOC
     <ul class="nav nav-pills mb-3">
       <?php foreach ($categorias as $c): ?>
         <li class="nav-item">
-          <a class="nav-link <?= $c['id_categoria'] == $id_categoria ? 'active' : ''; ?>" href="categorias.php?id=<?= $c['id_categoria']; ?>">
+          <a class="nav-link <?= $c['id_categoria'] == $id_categoria ? 'active' : ''; ?>" 
+             href="categorias.php?id=<?= $c['id_categoria']; ?>">
             <?= $c['nombre_categoria']; ?>
           </a>
         </li>
@@ -46,11 +47,19 @@ $categorias = $con->query("SELECT * FROM categorias")->fetchAll(PDO::FETCH_ASSOC
       <?php foreach ($productos as $p): ?>
         <div class="col-md-3 mb-4">
           <div class="card shadow-sm border-0">
-            <img src="img/productos/<?= $p['id_producto']; ?>.jpg" class="card-img-top" style="height:200px; object-fit:cover;">
+            <img src="img/productos/<?= $p['id_producto']; ?>.jpg" 
+                 class="card-img-top" 
+                 style="height:200px; object-fit:cover;">
             <div class="card-body">
               <h5 class="card-title"><?= $p['nombre_producto']; ?></h5>
               <p class="card-text text-success fw-bold">$<?= number_format($p['precio'], 2); ?></p>
-              <a href="comprar.php?id=<?= $p['id_producto']; ?>" class="btn btn-primary w-100">Comprar</a>
+              <form action="comprar.php" method="POST">
+                <input type="hidden" name="id_producto" value="<?= $p['id_producto']; ?>">
+                <div class="input-group mb-2">
+                  <input type="number" name="cantidad" class="form-control" value="1" min="1">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Comprar</button>
+              </form>
             </div>
           </div>
         </div>
@@ -58,5 +67,4 @@ $categorias = $con->query("SELECT * FROM categorias")->fetchAll(PDO::FETCH_ASSOC
     </div>
   </div>
 </body>
-
 </html>

@@ -27,11 +27,19 @@ $sql = $con->query("SELECT p.*, c.nombre_categoria
       <?php while ($row = $sql->fetch(PDO::FETCH_ASSOC)): ?>
         <div class="col-md-3 mb-4">
           <div class="card shadow-sm border-0">
-            <img src="img/productos/<?= $row['id_producto']; ?>.jpg" class="card-img-top" style="height:200px; object-fit:cover;">
+            <img src="img/productos/<?= $row['id_producto']; ?>.jpg"
+              class="card-img-top"
+              style="height:200px; object-fit:cover;">
             <div class="card-body">
               <h5 class="card-title"><?= $row['nombre_producto']; ?></h5>
               <p class="card-text text-success fw-bold">$<?= number_format($row['precio'], 2); ?></p>
-              <a href="comprar.php?id=<?= $row['id_producto']; ?>" class="btn btn-primary w-100">Comprar</a>
+              <form action="comprar.php" method="POST">
+                <input type="hidden" name="id_producto" value="<?= $row['id_producto']; ?>">
+                <div class="input-group mb-2">
+                  <input type="number" name="cantidad" class="form-control" value="1" min="1">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Comprar</button>
+              </form>
             </div>
           </div>
         </div>

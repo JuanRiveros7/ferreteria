@@ -15,14 +15,8 @@ if (isset($_POST['inicio'])) {
     }
 
     // Buscar el usuario en la base de datos
-    $sql = $con->prepare("
-    SELECT u.*, r.nombre_rol
-    FROM usuarios u
-    INNER JOIN roles r ON u.id_rol = r.id_rol
-    WHERE u.usuario = ?
-    ");
-
-    $sql->execute([$usuario]);
+    $sql = $con->prepare("SELECT u.*, r.nombre_rol FROM usuarios u INNER JOIN roles r ON u.id_rol = r.id_rol WHERE u.usuario = ? AND u.documento = ?");
+    $sql->execute([$usuario, $doc]);
     $fila = $sql->fetch(PDO::FETCH_ASSOC);
 
     // Validar si existe y si la contraseña coincide
