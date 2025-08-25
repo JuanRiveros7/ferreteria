@@ -19,14 +19,9 @@ if (isset($_POST['guardar'])) {
 
     //determina la categoría por la id_categoria
     if (!empty($nueva_categoria)) {
-        $sqlCheck = $con->prepare("SELECT id_categoria FROM categorias WHERE nombre = ?");
+        $sqlCheck = $con->prepare("SELECT id_categoria FROM categorias WHERE nombre_categoria = ?");
         $sqlCheck->execute([$nueva_categoria]);
         $cat = $sqlCheck->fetch(PDO::FETCH_ASSOC);
-
-        //verifica si ya existe la categoria
-        $check = $con->prepare("SELECT id_categoria FROM categorias WHERE nombre_categoria = ?");
-        $check->execute([$nueva_categoria]);
-        $cat = $check->fetch();
 
         if ($cat) {
             $id_categoria = $cat['id_categoria'];

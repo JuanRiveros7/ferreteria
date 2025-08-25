@@ -36,9 +36,6 @@ if (isset($_POST['inicio'])) {
             case 2: // Vendedor
                 header("Location: ../model/Vendedor/indexvendedor.php");
                 break;
-            case 3: // Cliente
-                header("location: ../model/Cliente/indexcliente.php");
-                break;
             default:
                 header("Location: ../index.php");
                 break;

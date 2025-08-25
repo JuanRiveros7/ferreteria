@@ -6,13 +6,7 @@ $con = $db->conectar();
 
 // Consulta productos con su categoría
 $sql = "
-    SELECT 
-        p.id_producto,
-        p.nombre_producto,
-        p.descripcion,
-        p.precio,
-        p.stock,
-        c.nombre_categoria
+    SELECT p.*, c.nombre_categoria
     FROM productos p
     JOIN categorias c ON p.id_categoria = c.id_categoria
     ORDER BY p.nombre_producto ASC

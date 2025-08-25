@@ -79,7 +79,6 @@ $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
     </header>
 
     <div class="container mt-5">
-        <!-- Mensajes -->
         <?= $mensaje ?>
         <?php if (isset($_GET['ok'])): ?>
             <div class="alert alert-success">Usuario creado exitosamente.</div>
